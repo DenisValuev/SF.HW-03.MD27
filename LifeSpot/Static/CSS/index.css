@@ -1,0 +1,65 @@
+﻿/*Свойства стиля элемента*/
+
+/*Комбинированный селектор - применяется ко всем элементам*/
+header,footer,aside,body,.video-container,.navbar{
+    font-family: "Helvetica 65 Medium", sans-serif;
+}
+header, footer,body, .video-container{
+    background-color: linen;
+}
+/*Простые селекторы*/
+.video-container {
+    display: inline-block;
+    padding-left: 1%;
+    padding-top: 1%;
+}
+.search:focus{
+    border-color: cadetblue;
+    border: 3px;
+}
+
+.navbar {
+    color: darkgray;
+    padding-left: 15%;
+}
+
+header {
+    color: black;
+    padding-left: 1%;
+    padding-top: 1.2%;
+}
+#header-index{
+    color: #44453f;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    font-size: medium;
+    color: dimgrey;
+    line-height: 66%;
+    padding-left: 1%;    
+}
+
+aside {
+    height: 100%; /*Высота в полный размер. Этот параметр можно убрать, если вы хотите выставлять высоту автоматически*/
+    width: 10%;
+    position: absolute; /*Фиксированная позиция сайд-бара. Так он будет оставаться на мести при скроллинге*/
+    z-index: 1; /*Сайд-бар будет поверх остальных элементов*/
+    top: 0; /*Сайд-бар будет в самой верхней части страницы*/
+    left: 0;
+    background-color: #111; /*Черный цвет фона (задан в виде кода)*/
+    overflow-x: hidden; /*Отключаем горизонтальную прокрутку*/
+    padding-top: 2%;
+}
+.navbar p{
+    color:darkgray;
+    padding-left: 15%;
+}
+.navbar p:hover{
+    color: aliceblue;
+}
+
+body {
+    padding-left: 11%;
+}
