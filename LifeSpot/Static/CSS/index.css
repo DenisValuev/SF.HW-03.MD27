@@ -63,3 +63,17 @@ aside {
 body {
     padding-left: 11%;
 }
+
+.review-container, .review-buttom{
+    display: inline-block;
+    margin-top: 0.5em;
+    padding-left: 1%;
+    padding-top: 1%;
+}
+
+.review-text{
+    display: block;
+    margin-top: 0.5em;
+    padding-left: 1%;
+    padding-top: 1%;
+}

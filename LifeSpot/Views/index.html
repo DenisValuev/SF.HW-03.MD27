@@ -4,7 +4,23 @@
     <meta charset="UTF-8">
     <title>LifeSpot</title>
     <!--Подключение стилей по относительному пути из внешнего файла-->
-    <link href="../Static/CSS/index.css" rel="stylesheet" type="text/css"/>
+    <link href="../Static/CSS/index.css" rel="stylesheet" type="text/css" />
+    <!--Внешний скрипт с функциями-->
+    <script type ="text/javascript" src="../Static/JS/index.js"></script>
+    <!--Внутренний скрипт с вызовом функций-->
+    <script>
+        //Проверка на возраст
+        //checkAge();
+        //Сохранение сессии
+        handleSession();
+        //Вывод данных сессии в консоль
+        sessionLog();
+
+        //Подпишись на нашу социальную сеть
+        setTimeout(() => alert("Нравится LifeSpot? " + '\n' + "Подпишись на наш Instagram!"), 30000)
+
+        const inputParseFunction = function () { return document.getElementsByTagName('input')[0].value.toLowerCase(); };
+    </script>
 </head>
 <body>
     <div>
@@ -13,17 +29,15 @@
             <h1>LifeSpot - прямые трансляции с улиц</h1>
             <!--Поле для поска видео-->
             <div class="search">
-                <input type="text" placeholder="Поиск" />
+                <input type="text" oninput="filterContent()" placeholder="Поиск" size=50 % />
             </div>
             <!--Параграф-->
             <p>Покажем, что происходит прямо сейчас</p>
         </header>
-        <aside id="sidebar">
-            <div class="navbar">
-                <a href="/"><p>Все трансляции</p></a>
-                <a href="/"><p>О проекте</p></a>
-            </div>
-        </aside>
+
+        <!--SIDEBAR-->
+        <div ng-include="sideBar.html"></div>
+
         <!--Москва-->
         <div class="video-container">
             <iframe width="530" height="330" src="https://rutube.ru/play/embed/142f6e182622239a774512350ef596a6/" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
@@ -40,8 +54,8 @@
             <h3 class="video-title">Лондон</h3>
         </div>
         <!-- <a href="https://www.youtube.com/watch?v=Vn28Tk_uuq0"><button>Москва</button></a>
-        <a href="https://www.youtube.com/watch?v=GSmCh4DrbWY"><button>Нью-Йорк</button></a>
-        <a href="https://www.youtube.com/watch?v=JplMzss6_YE&ab_channel=WokiliWanders"><button>Лондон</button></a>!-->
+    <a href="https://www.youtube.com/watch?v=GSmCh4DrbWY"><button>Нью-Йорк</button></a>
+    <a href="https://www.youtube.com/watch?v=JplMzss6_YE&ab_channel=WokiliWanders"><button>Лондон</button></a>!-->
         <!--Футер страницы находится под основной частью (body) -->
         <footer>
             <p>LifeSpot - все права защищены</p>
