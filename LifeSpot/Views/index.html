@@ -9,16 +9,10 @@
     <script type ="text/javascript" src="../Static/JS/index.js"></script>
     <!--Внутренний скрипт с вызовом функций-->
     <script>
-        //Проверка на возраст
-        //checkAge();
-        //Сохранение сессии
-        handleSession();
-        //Вывод данных сессии в консоль
-        sessionLog();
+        //Обработка сессии
+        handleSession(logger, checker);
 
-        //Подпишись на нашу социальную сеть
-        setTimeout(() => alert("Нравится LifeSpot? " + '\n' + "Подпишись на наш Instagram!"), 30000)
-
+        //Функция для получения пользовательского ввода
         const inputParseFunction = function () { return document.getElementsByTagName('input')[0].value.toLowerCase(); };
     </script>
 </head>

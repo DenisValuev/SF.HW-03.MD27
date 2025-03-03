@@ -1,33 +1,53 @@
-﻿//Создадим объект Map для хранения сессии
-let session = new Map();
-
-function handleSession() {
-    //Сохраним userAgent
-    session.set("userAgent", window.navigator.userAgent)
-
-    session.set("startDate", new Date().toLocaleString())
-}
-
-function checkAge() {
-    //Запросим возраст пользователя и сохраним в переменную
-    session.set("age", prompt("Пожалуйста, введите Ваш возраст"));
-
-    if (session.get("age") >= 18) {
-        //Те, кто старше 18, увидят приветствие и будут направлены на сайт
-        alert("Приветствуем на LifiSpot " + '\n' + "Текущее время: " + new Date().toLocaleString());
+﻿let checker = function (newVisit) {
+    if (window.sessionStorage.getItem("userAge") >= 18) {
+        // Добавим проверку на первое посещение, чтобы не показывать приветствие
+        // лишний раз
+        if (newVisit) {
+            alert("Приветствуем на LifeSpot! " + '\n' + "Текущее время: " + new Date().toLocaleString());
+        }
     }
     else {
-        //Выполним проверку. Если введенное число < 18, лиюо если введено не число - 
-        //пользователь будет перенаправлен
-        alert("Наши трансляции не предназначены для лиц младше 18 лет. Вы будете перенаправлены")
-        window.location.href = "http://google.com";
+        alert("Наши трансляции не предназначены для лиц моложе 18 лет. Вы будете перенаправлены");
+        window.location.href = "http://www.google.com"
     }
 }
 
-let sessionLog = function logSession() {
-    for (let result of session) {
-        console.log(result)
+let logger = function () {
+    console.log('Начало сессии: ' + window.sessionStorage.getItem("startDate"))
+    console.log('Даныне клиента: ' + window.sessionStorage.getItem("userAgent"))
+    console.log('Возраст пользователя: ' + window.sessionStorage.getItem("userAge"))
+}
+
+function handleSession(logger, checker) {
+
+    // Проверяем дату захода и проставляем, если новый визит
+    if (window.sessionStorage.getItem("startDate") == null) {
+        window.sessionStorage.setItem("startDate", new Date().toLocaleString())
     }
+
+    // Проверяем userAgent и проставляем, если новый визит
+    if (window.sessionStorage.getItem("userAgent") == null) {
+        window.sessionStorage.setItem("userAgent", window.navigator.userAgent)
+    }
+
+    // Проверяем возраст и проставляем, если новый визит
+    if (window.sessionStorage.getItem("userAge") == null) {
+        let input = prompt("Пожалуйста, введите ваш возраст?");
+        window.sessionStorage.setItem("userAge", input)
+
+        /* Возраст отсутствовал в sessionStorage. Значит, это первый визит пользователя, и
+         при прохождении проверки на возраст он увидит приветствие*/
+        checker(true)
+    } else {
+
+        /* Пользователь заходит не первый раз, приветствие не показываем. */
+        checker(false)
+    }
+
+    /* Вызываем переданную в качестве колл-бэка функцию логирования.
+        передавать в качестве коллбека не обязательно, можно вызвать и напрямую, но мы добавили для повторения.
+    */
+    logger()
 }
 
 
