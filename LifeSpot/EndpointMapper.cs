@@ -58,8 +58,25 @@ namespace LifeSpot
                 builder.MapGet($"/Media/{fileName}", async context =>
                 {
                     var imgPath = Path.Combine(Directory.GetCurrentDirectory(), "Media", fileName);
-                    var img = await File.ReadAllTextAsync(imgPath);
-                    await context.Response.WriteAsync(img);
+
+                    // Чтение изображения как бинарных данных
+                    var imgBytes = await File.ReadAllBytesAsync(imgPath);
+
+                    // Установка правильного типа контента для изображений
+                    var fileExtension = Path.GetExtension(fileName).ToLower();
+                    var contentType = fileExtension switch
+                    {
+                        ".jpg" => "image/jpeg",
+                        ".jpeg" => "image/jpeg",
+                        ".png" => "image/png",
+                        ".gif" => "image/gif",
+                        _ => "application/octet-stream" // Если не найдено, использовать общий тип
+                    };
+
+                    context.Response.ContentType = contentType;
+
+                    // Отправка данных изображения в ответ
+                    await context.Response.Body.WriteAsync(imgBytes, 0, imgBytes.Length);
                 });
             }
         }
